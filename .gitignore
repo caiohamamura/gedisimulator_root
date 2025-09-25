@@ -1,0 +1,6 @@
+.vscode
+build
+cmpfit-1.5
+.libOctree.c
+bin
+lib

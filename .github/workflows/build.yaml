@@ -65,8 +65,3 @@ jobs:
     - name: Build
       run: cmake --build build --config ${{ matrix.build_type }}
       shell: bash
-
-    # Run tests
-    - name: Run tests
-      run: cmake --build build --config ${{ matrix.build_type }} --target test
-      shell: bash

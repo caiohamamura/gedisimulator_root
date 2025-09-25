@@ -55,7 +55,7 @@ jobs:
     - name: Configure CMake
       run: |
         if [[ "${{ runner.os }}" == "Windows" ]]; then
-          cmake -B build -S . -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_PREFIX_PATH="C:/msys64/mingw64"
+          cmake -B build -S . -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         else
           cmake -B build -S . -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         fi

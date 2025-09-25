@@ -49,19 +49,20 @@ jobs:
           mingw-w64-x86_64-libtiff
           mingw-w64-x86_64-libgeotiff
           make
-        shell: bash
+        shell: msys2 {0}
 
     # Configure CMake
-    - name: Configure CMake
+    - name: Configure Build CMake
+      if: runner.os == 'Windows'
       run: |
-        if [[ "${{ runner.os }}" == "Windows" ]]; then
-          cmake -B build -S . -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-        else
-          cmake -B build -S . -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-        fi
-      shell: bash
+        cmake -B build -S . -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        cmake --build build --config ${{ matrix.build_type }}
+      shell: msys2 {0}
 
     # Build
-    - name: Build
-      run: cmake --build build --config ${{ matrix.build_type }}
+    - name: Conf Build
+      if: runner.os != 'Windows'
+      run: |
+        cmake -B build -S . -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        cmake --build build --config ${{ matrix.build_type }}
       shell: bash

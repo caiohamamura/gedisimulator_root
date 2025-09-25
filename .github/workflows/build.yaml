@@ -33,7 +33,7 @@ jobs:
       if: runner.os == 'macOS'
       run: |
         brew update
-        brew install cmake gsl gdal hdf5 libtiff geotiff
+        brew install cmake gsl gdal hdf5 libtiff libgeotiff
 
     # Windows dependencies using MSYS2
     - name: Install MSYS2 and dependencies (Windows)

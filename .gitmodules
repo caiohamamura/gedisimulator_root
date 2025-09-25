@@ -1,9 +1,9 @@
 [submodule "gedisimulator"]
 	path = gedisimulator
-	url = git@bitbucket.org:caiohamamura/gedisimulator.git
+	url = https://bitbucket.org/caiohamamura/gedisimulator.git
 [submodule "libclidar"]
 	path = libclidar
-	url = git@bitbucket.org:caiohamamura/libclidar.git
+	url = https://bitbucket.org/caiohamamura/libclidar.git
 [submodule "tools"]
 	path = tools
-	url = git@bitbucket.org:caiohamamura/tools.git
+	url = https://bitbucket.org/caiohamamura/tools.git

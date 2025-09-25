@@ -46,8 +46,8 @@ jobs:
           mingw-w64-x86_64-gsl
           mingw-w64-x86_64-gdal
           mingw-w64-x86_64-hdf5
-          mingw-w64-x86_64-tiff
-          mingw-w64-x86_64-geotiff
+          mingw-w64-x86_64-libtiff
+          mingw-w64-x86_64-libgeotiff
           make
         shell: bash
 

@@ -13,18 +13,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
         build_type: [Release, Debug]
-        include:
-          - os : macos-latest
-            build_type: Release
-          - os: windows-latest
-            build_type: Release
-            package_manager: msys2
-          - os: windows-latest
-            build_type: Release
-            package_manager: osgeo4w
-
 
     steps:
     - name: Checkout code
@@ -49,7 +39,7 @@ jobs:
 
     # Windows dependencies using MSYS2
     - name: Install MSYS2 and dependencies (Windows)
-      if: ${{ runner.os == 'Windows' && package_manager == 'msys2' }}
+      if: runner.os == 'Windows'
       uses: msys2/setup-msys2@v2
       with:
         update: true
@@ -63,35 +53,17 @@ jobs:
           mingw-w64-x86_64-libgeotiff
           make
         shell: msys2 {0}
-    
-    - name: Setup OSGeo4W environment
-      id: setup-osgeo4w
-      if: ${{ runner.os == 'Windows' && package_manager == 'osgeo4w' }}
-      uses: echoix/setup-OSGeo4W@v0.2.0
-      with:
-        packages: >-
-          gdal-devel
-          geos-devel
-          hdf5-devel
-          libgeotiff-devel
-          libtiff-devel
-          gsl-devel
-    
-    - name: Configure Build CMake MSYS
-      if: ${{ runner.os == 'Windows' && package_manager == 'msys2' }}
+
+    # Configure CMake
+    - name: Configure Build CMake
+      if: runner.os == 'Windows'
       run: |
         cmake -B build -S . -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         cmake --build build --config ${{ matrix.build_type }}
       shell: msys2 {0}
 
-    - name: Configure Build CMake OSGeo4W
-      if: ${{ runner.os == 'Windows' && package_manager == 'osgeo4w' }}
-      run: |
-        cmake -B build -S . -G"Visual Studio 17 Win64" -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_PREFIX_PATH=C:\OSGeo4W
-        cmake --build build --config ${{ matrix.build_type }}
-      shell: cmd {0}
-
-    - name: CMake Build
+    # Build
+    - name: Conf Build
       if: runner.os != 'Windows'
       run: |
         cmake -B build -S . -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}

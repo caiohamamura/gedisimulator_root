@@ -1,6 +1,6 @@
 [submodule "gedisimulator"]
 	path = gedisimulator
-	url = https://bitbucket.org/caiohamamura/gedisimulator.git
+	url = https://bitbucket.org/caiohamamura/gedisimulator_new.git
 [submodule "libclidar"]
 	path = libclidar
 	url = https://bitbucket.org/caiohamamura/libclidar.git

@@ -1,5 +1,8 @@
 .vscode
 build
+build2
+build3
+build4
 cmpfit-1.5
 .libOctree.c
 bin

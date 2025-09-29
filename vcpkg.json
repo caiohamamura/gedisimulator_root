@@ -1,0 +1,9 @@
+{
+  "dependencies": [
+    "gdal",
+    "gsl",
+    "hdf5",
+    "tiff",
+    "libgeotiff"
+  ]
+}

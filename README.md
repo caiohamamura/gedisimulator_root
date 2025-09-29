@@ -17,8 +17,8 @@ This project is fully tested with continuous integrated tools as seen from the b
 ## Building:
 
 ```bash
-git clone https://github.com/caiohamamura/gedi_simulator_root --depth=1 --recurse-submodules --shallow-submodules
-cd gedi_simulator_root
+git clone https://github.com/caiohamamura/gedisimulator_root --depth=1 --recurse-submodules --shallow-submodules
+cd gedisimulator_root
 cmake -B build
 cmake --build build
 ```

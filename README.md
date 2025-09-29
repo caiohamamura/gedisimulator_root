@@ -12,13 +12,40 @@ This project is fully tested with continuous integrated tools as seen from the b
  - gdal-dev(el)
  - libhdf5-dev / hdf5-devel
  - gsl-dev(el)
+ - git
 
 ## Building:
 
 ```bash
+git clone https://github.com/caiohamamura/gedi_simulator_root --depth=1 --recurse-submodules --shallow-submodules
+cd gedi_simulator_root
 cmake -B build
 cmake --build build
 ```
+
+### Windows:
+
+For windows you could either use rtools bash, msys2, or even better `Visual Studio Build Tools 2022` with vcpkg. 
+
+In Windows 11 you could run:
+
+```powershell
+winget install Microsoft.VisualStudio.2022.BuildTools --force --override "--wait --passive --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.Windows11SDK.22621"
+winget install Kitware.CMake Git.Git
+```
+
+Now open Developer Powershell for VS 2022 or Developer Command Prompt for VS 2022 and `cd` to whatever folder you want to download and build everything. Then run:
+
+```
+git clone https://github.com/microsoft/vcpkg --depth=1
+git clone https://github.com/caiohamamura/gedisimulator_root --depth=1 --recurse-submodules --shallow-submodules
+cd gedisimulator_root
+cmake -B build -DCMAKE_TOOLCHAIN_FILE="../vcpkg/scripts/buildsystems/vcpkg.cmake"
+cmake --build build
+cmake --install build --prefix .
+```
+
+Downloading all dependencies may take a while, be patient. Everything will be installed within `bin` folder.
 
 ## Installing
 
